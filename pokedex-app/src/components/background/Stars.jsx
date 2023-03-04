@@ -1,6 +1,7 @@
 import React from "react";
 import "./stars.css";
 
+
 function Stras() {
   return (
     <div>

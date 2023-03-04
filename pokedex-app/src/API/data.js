@@ -1,4 +1,4 @@
-{"pokemones" :[
+const pokemones = [
   {
    "id": "001",
     "name": "Bulbasaur",
@@ -228,7 +228,4 @@
     }
   }
 ]
-}
-
-
-
+export default pokemones;

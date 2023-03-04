@@ -1,5 +1,3 @@
-import React, { useEffect, useState} from "react";
-
 import { useParams,} from "react-router-dom";
 
 // ============ IMPORTS COMPONENTS ===============
@@ -8,28 +6,15 @@ import { FaRulerVertical } from "react-icons/fa";
 import { GiWeight } from "react-icons/gi";
 import { MdOutlineCatchingPokemon } from "react-icons/md";
 import "./modal.css";
+import pokemones from "../../API/data";
 
 
 export default function ModalStates(props) {
-const [pokemones, setPokemones] = useState ([]);
 
-  useEffect(()=>{
-    fetch("http://localhost:3000/pokemones",{
-      method:"GET",
-      headers: {"Content-Type": "application/json"},
-    })
-    .then((response)=> response.json())
-    .then((data) => {
-      setPokemones(data);
-    })
-    .catch((error)=>{
-      alert(error);
-    });
-  }, []);
 
 
   const { id } = useParams();
-  const pokemon = pokemones?.find((element) => {
+  const pokemon = pokemones.find((element) => {
 
     
     return element.id == id;
@@ -54,18 +39,18 @@ const [pokemones, setPokemones] = useState ([]);
         <div className="modal-Cont">
           <article className="cont-Info">
 
-            <img className="img-Poke img-Modal" src={`../${pokemon?.image}`} />
-            <h1>{pokemon?.name}</h1>
+            <img className="img-Poke img-Modal" src={`../${pokemon.image}`} />
+            <h1>{pokemon.name}</h1>
 
             <section className="cont-type">
-              <div className="type1" style={{ backgroundColor: pokemon?.color }}>
-                {pokemon?.element.type1}
+              <div className="type1" style={{ backgroundColor: pokemon.color }}>
+                {pokemon.element.type1}
               </div>
               <div
                 className="type2"
-                style={{ backgroundColor: pokemon?.element.color2 }}
+                style={{ backgroundColor: pokemon.element.color2 }}
               >
-                {pokemon?.element.type2}
+                {pokemon.element.type2}
               </div>
             </section>
             
@@ -76,13 +61,13 @@ const [pokemones, setPokemones] = useState ([]);
               <div className="weight-height">
                 <div className="weight">
                   <GiWeight />
-                  {pokemon?.weight} <br />
+                  {pokemon.weight} <br />
                   <span>WEIGHT</span>
                 </div>
 
                 <div className="height">
                   <FaRulerVertical />
-                  {pokemon?.height} <br />
+                  {pokemon.height} <br />
                   <span>HEIGHT</span>
                 </div>
               </div>
@@ -90,7 +75,7 @@ const [pokemones, setPokemones] = useState ([]);
               <div className="moves">
                 <MdOutlineCatchingPokemon />
                 <span>MOVES</span>
-                {pokemon?.moves}
+                {pokemon.moves}
               </div>
 
             </section>
@@ -101,22 +86,22 @@ const [pokemones, setPokemones] = useState ([]);
           <section className="cont-Stats">
 
             <label for="ATK">ATK</label>
-            <progress id="ATK" className="progress" label={pokemon?.baseStats.ATK} max="200" value={pokemon?.baseStats.ATK} />
+            <progress id="ATK" className="progress" label={pokemon.baseStats.ATK} max="200" value={pokemon.baseStats.ATK} />
 
             <label for="DEF">DEF</label>
-            <progress id="DEF" className="progress" max="200" value={pokemon?.baseStats.DEF}/>
+            <progress id="DEF" className="progress" max="200" value={pokemon.baseStats.DEF}/>
 
             <label for="HP">HP</label>
-            <progress id="HP" className="progress" max="200" value={pokemon?.baseStats.HP}/>
+            <progress id="HP" className="progress" max="200" value={pokemon.baseStats.HP}/>
 
             <label for="SATK">SATK</label>
-            <progress id="SATK" className="progress"  max="200"value={pokemon?.baseStats.SATK}/>
+            <progress id="SATK" className="progress"  max="200"value={pokemon.baseStats.SATK}/>
 
             <label for="SDEF">SDEF</label>
-            <progress id="SDEF" className="progress" max="200" value={pokemon?.baseStats.SDEF}/>
+            <progress id="SDEF" className="progress" max="200" value={pokemon.baseStats.SDEF}/>
 
             <label for="SPD">SPD</label>
-            <progress id="SPD" className="progress" max="200" value={pokemon?.baseStats.SPD}/> 
+            <progress id="SPD" className="progress" max="200" value={pokemon.baseStats.SPD}/> 
 
           </section>
 
